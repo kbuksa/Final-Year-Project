@@ -37,3 +37,7 @@ Started with downloading Ubuntu desktop to work with simulator
 ## 18/10
 
 Begun reading lecture notes that are accessible on F1Tenth website (https://f1tenth.org/learn.html).
+
+## 23/10
+
+Began writing report on the F1Tenth hardware, sensors and communications. Created reports and programs folders.

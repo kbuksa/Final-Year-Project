@@ -41,3 +41,13 @@ Begun reading lecture notes that are accessible on F1Tenth website (https://f1te
 ## 23/10
 
 Began writing report on the F1Tenth hardware, sensors and communications. Created reports and programs folders.
+
+# Week 24/10/22 - 30/10/22
+
+Goals for this week:
+
+Complete research on hardware, sensors and communication of the F1Tenth car
+
+## 25/10
+
+Continued research on hardware of the F1Tenth. Researched Chassis, NVIDIA Jetson NX, Lidar sensor.

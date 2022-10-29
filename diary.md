@@ -51,3 +51,7 @@ Complete research on hardware, sensors and communication of the F1Tenth car
 ## 25/10
 
 Continued research on hardware of the F1Tenth. Researched Chassis, NVIDIA Jetson NX, Lidar sensor.
+
+## 29/10
+
+Continued hardware report write-up. Completed writing majority of F1Tenth phyical car's hardware. Plan to start writing how aspects link to simulator soon. Hopefully can finish report by mid next week to organise meeting with supervisor.

@@ -55,3 +55,19 @@ Continued research on hardware of the F1Tenth. Researched Chassis, NVIDIA Jetson
 ## 29/10
 
 Continued hardware report write-up. Completed writing majority of F1Tenth phyical car's hardware. Plan to start writing how aspects link to simulator soon. Hopefully can finish report by mid next week to organise meeting with supervisor.
+
+# Week 31/9/22 - 6/11/22
+
+Week focusing on courseworks for other modules. Plans to fully initialise Ubuntu.
+
+# Week 7/11/22 - 13/11/22
+
+Week focusing on finishing report on hardware, potentially finish set up for F1Tenth simulator and ROS system
+
+## 07/11
+
+Downloaded Ubuntu. Began setup of ROS-Melodic but encountered problems. Meeting with supervisor on Wednesday will discuss this problem
+
+## 08/11
+
+Finished Hardware communication with ROS section of hardware report.

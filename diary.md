@@ -71,3 +71,19 @@ Downloaded Ubuntu. Began setup of ROS-Melodic but encountered problems. Meeting 
 ## 08/11
 
 Finished Hardware communication with ROS section of hardware report.
+
+# Week 14/11/22 - 20/11/22
+
+## 15/11
+
+Discovered that ROS Melodic works most stable on Ubuntu v18.04. Downloaded this version, ROS and simulator. Can now start owkring on writing code.
+
+# Week 21/11/22 - 27/11/22
+
+## 22/11
+
+Began writing configuration and installation of ROS environment and F1Tenth simulator report
+
+## 23/11
+
+Completed configuration and installation of ROS environment and F1Tenth simulator report

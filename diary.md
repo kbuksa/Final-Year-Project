@@ -76,7 +76,7 @@ Finished Hardware communication with ROS section of hardware report.
 
 ## 15/11
 
-Discovered that ROS Melodic works most stable on Ubuntu v18.04. Downloaded this version, ROS and simulator. Can now start owkring on writing code.
+Discovered that ROS Melodic works most stable on Ubuntu v18.04. Downloaded this version, ROS and simulator. Can now start working on writing code.
 
 # Week 21/11/22 - 27/11/22
 
@@ -87,3 +87,13 @@ Began writing configuration and installation of ROS environment and F1Tenth simu
 ## 23/11
 
 Completed configuration and installation of ROS environment and F1Tenth simulator report
+
+## 24/11
+
+Saved simulator and files in the repository under 'program' package.
+
+# Week 28/11/22 - 04/12/22
+
+## 29/11
+
+Researched how to use ROS in more detail. Created 2 simple programs for POC on ROS. 'Publisher.py' will 'publish' a random number in the ROS system at a constant rate. 'Subscriber.py' will read and display such information published from 'Publisher.py' 

@@ -4,6 +4,9 @@ import rospy
 from std_msgs.msg import Int16
 import random
 
+#Program inspired by ros.org tutorial
+
+
 #Simple function to publish number to be read by subscriber
 def num_publish():
     #Declaring node publising to 'num_output' topic with message type of 16-bit int

@@ -4,7 +4,7 @@ import rospy
 from std_msgs.msg import Int16
 import random
 
-#Program inspired by ros.org tutorial
+#Program inspired by ros.org tutorial http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28python%29
 
 
 #Simple function to publish number to be read by subscriber

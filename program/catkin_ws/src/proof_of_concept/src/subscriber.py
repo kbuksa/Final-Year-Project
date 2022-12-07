@@ -2,7 +2,7 @@
 import rospy
 from std_msgs.msg import Int16
 
-#Program inspired by ros.org tutorial
+#Program inspired by ros.org tutorial http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28python%29
 
 #outputs subscribed message
 def terminal_output(data):

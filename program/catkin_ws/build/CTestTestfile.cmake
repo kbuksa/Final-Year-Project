@@ -7,3 +7,4 @@
 subdirs("gtest")
 subdirs("proof_of_concept")
 subdirs("f1tenth_simulator")
+subdirs("turtlesim_poc")

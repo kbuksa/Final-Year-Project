@@ -3040,6 +3040,24 @@ clean: f1tenth_simulator/CMakeFiles/keyboard.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Directory level rules for directory turtlesim_poc
+
+# Convenience name for "all" pass in the directory.
+turtlesim_poc/all:
+
+.PHONY : turtlesim_poc/all
+
+# Convenience name for "clean" pass in the directory.
+turtlesim_poc/clean:
+
+.PHONY : turtlesim_poc/clean
+
+# Convenience name for "preinstall" pass in the directory.
+turtlesim_poc/preinstall:
+
+.PHONY : turtlesim_poc/preinstall
+
+#=============================================================================
 # Special targets to cleanup operation of make.
 
 # Special rule to run CMake to check the build system integrity.

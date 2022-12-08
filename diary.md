@@ -56,11 +56,11 @@ Continued research on hardware of the F1Tenth. Researched Chassis, NVIDIA Jetson
 
 Continued hardware report write-up. Completed writing majority of F1Tenth phyical car's hardware. Plan to start writing how aspects link to simulator soon. Hopefully can finish report by mid next week to organise meeting with supervisor.
 
-# Week 31/9/22 - 6/11/22
+# Week 31/9/22 - 06/11/22
 
 Week focusing on courseworks for other modules. Plans to fully initialise Ubuntu.
 
-# Week 7/11/22 - 13/11/22
+# Week 07/11/22 - 13/11/22
 
 Week focusing on finishing report on hardware, potentially finish set up for F1Tenth simulator and ROS system
 
@@ -97,3 +97,25 @@ Saved simulator and files in the repository under 'program' package.
 ## 29/11
 
 Researched how to use ROS in more detail. Created 2 simple programs for POC on ROS. 'Publisher.py' will 'publish' a random number in the ROS system at a constant rate. 'Subscriber.py' will read and display such information published from 'Publisher.py' 
+
+## 30/11
+
+Interim report created. Added introduction talking about why reasoning behind the project, how I am going to overcome and prove this concept.
+
+## 01/12
+
+Added aims and objectives of the project. Further research on algorithms (Bug algorithms, Monte Carlo Localisation, Ackermann Steering Geometry).
+
+## 02/12
+
+Added Installation & Config report to interim report. Added F1Tenth hardware report. Talked about message passing, PID control and how it is used in simulator and physical car.
+
+## 04/12
+
+Created simple turtlesim robot program to show automatic forward movement.
+
+# Week 05/12/22 - 11/12/22
+
+## 07/12
+
+Talked about proof of concept of message passing (publisher-subscriber), importance in ROS. Talked about turtlesim program. Completed recordings of proof of concept demo.

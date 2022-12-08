@@ -5,4 +5,6 @@
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.
 subdirs("gtest")
+subdirs("proof_of_concept")
 subdirs("f1tenth_simulator")
+subdirs("turtlesim_poc")

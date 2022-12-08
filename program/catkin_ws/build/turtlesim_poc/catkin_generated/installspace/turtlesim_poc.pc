@@ -1,0 +1,8 @@
+prefix=/home/kacper/fyp/PROJECT/program/catkin_ws/install
+
+Name: turtlesim_poc
+Description: Description of turtlesim_poc
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

@@ -131,7 +131,9 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/kacper/fyp/PROJECT/program/catkin_ws/build/gtest/cmake_install.cmake")
+  include("/home/kacper/fyp/PROJECT/program/catkin_ws/build/proof_of_concept/cmake_install.cmake")
   include("/home/kacper/fyp/PROJECT/program/catkin_ws/build/f1tenth_simulator/cmake_install.cmake")
+  include("/home/kacper/fyp/PROJECT/program/catkin_ws/build/turtlesim_poc/cmake_install.cmake")
 
 endif()
 

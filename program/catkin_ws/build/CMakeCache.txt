@@ -385,7 +385,7 @@ gtest_main_LIB_DEPENDS:STATIC=general;-lpthread;general;gtest;
 interactive_markers_DIR:PATH=/opt/ros/melodic/share/interactive_markers/cmake
 
 //Path to a library.
-lib:FILEPATH=/opt/ros/melodic/lib/libtf.so
+lib:FILEPATH=/opt/ros/melodic/lib/librostime.so
 
 //The directory containing a CMake configuration file for message_filters.
 message_filters_DIR:PATH=/opt/ros/melodic/share/message_filters/cmake
@@ -398,6 +398,18 @@ message_runtime_DIR:PATH=/opt/ros/melodic/share/message_runtime/cmake
 
 //The directory containing a CMake configuration file for nav_msgs.
 nav_msgs_DIR:PATH=/opt/ros/melodic/share/nav_msgs/cmake
+
+//Value Computed by CMake
+proof-of-concept_BINARY_DIR:STATIC=/home/kacper/fyp/PROJECT/program/catkin_ws/build/proof-of-concept
+
+//Value Computed by CMake
+proof-of-concept_SOURCE_DIR:STATIC=/home/kacper/fyp/PROJECT/program/catkin_ws/src/proof-of-concept
+
+//Value Computed by CMake
+proof_of_concept_BINARY_DIR:STATIC=/home/kacper/fyp/PROJECT/program/catkin_ws/build/proof_of_concept
+
+//Value Computed by CMake
+proof_of_concept_SOURCE_DIR:STATIC=/home/kacper/fyp/PROJECT/program/catkin_ws/src/proof_of_concept
 
 //The directory containing a CMake configuration file for rosconsole.
 rosconsole_DIR:PATH=/opt/ros/melodic/share/rosconsole/cmake
@@ -452,6 +464,12 @@ tf2_ros_DIR:PATH=/opt/ros/melodic/share/tf2_ros/cmake
 
 //The directory containing a CMake configuration file for tf.
 tf_DIR:PATH=/opt/ros/melodic/share/tf/cmake
+
+//Value Computed by CMake
+turtlesim_poc_BINARY_DIR:STATIC=/home/kacper/fyp/PROJECT/program/catkin_ws/build/turtlesim_poc
+
+//Value Computed by CMake
+turtlesim_poc_SOURCE_DIR:STATIC=/home/kacper/fyp/PROJECT/program/catkin_ws/src/turtlesim_poc
 
 //The directory containing a CMake configuration file for visualization_msgs.
 visualization_msgs_DIR:PATH=/opt/ros/melodic/share/visualization_msgs/cmake
@@ -569,7 +587,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=5
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=7
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

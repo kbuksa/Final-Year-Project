@@ -1,0 +1,8 @@
+prefix=/home/kacper/fyp/PROJECT/program/catkin_ws/install
+
+Name: proof_of_concept
+Description: Description of proof_of_concept
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

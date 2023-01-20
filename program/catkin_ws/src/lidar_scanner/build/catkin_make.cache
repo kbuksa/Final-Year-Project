@@ -1,0 +1,2 @@
+
+-DCATKIN_DEVEL_PREFIX=/home/kacper/fyp/PROJECT/program/catkin_ws/src/lidar_scanner/devel -DCMAKE_INSTALL_PREFIX=/home/kacper/fyp/PROJECT/program/catkin_ws/src/lidar_scanner/install -G Unix Makefiles

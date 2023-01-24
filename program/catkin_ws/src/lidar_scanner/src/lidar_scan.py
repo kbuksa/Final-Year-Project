@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 import rospy
-from sensor_msgs import LaserScan
-from std_msgs.msg import Float32
+from sensor_msgs.msg import LaserScan
 
 def callback(data):
     print("Left of robot:", data.ranges[0])
@@ -12,7 +11,7 @@ def lidar_scan_sub():
     #Name of node
     rospy.init_node("lidar_scanning")
     #Subscribe to scan
-    rospy.Subscriber("scan", Float32, callback)
+    rospy.Subscriber("/scan", LaserScan, callback)
     rospy.spin()
 
 # def publish_close():

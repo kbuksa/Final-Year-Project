@@ -3,9 +3,9 @@ import rospy
 from sensor_msgs.msg import LaserScan
 
 def callback(data):
-    print("Left of robot:", data.ranges[0])
-    print("In front of robot:", data.ranges[360])
-    print("Right of robot:", data.ranges[719])
+    print("Left of robot:", data.ranges[0]) #range value left of car
+    print("In front of robot:", data.ranges[360]) #range value ahead of car
+    print("Right of robot:", data.ranges[719]) #range value right of car
 
 def lidar_scan_sub():
     #Name of node
@@ -14,19 +14,5 @@ def lidar_scan_sub():
     rospy.Subscriber("/scan", LaserScan, callback)
     rospy.spin()
 
-# def publish_close():
-#     publish_node = ("closest_point", Float64)
-#     rospy.init_node("publish_close")
-
-# def publish_furthest():
-#     publish_node = ("furthest_point", Float64)
-#     rospy.init_node("publish_far")
-
 if __name__ == '__main__':
     lidar_scan_sub()
-    # try:
-    #     publish_close()
-    #     publish_furthest()
-        
-    # except rospy.ROSInterruptException:
-    #     pass

@@ -1,4 +1,4 @@
-# Week 03/10/22 - 09/10/22
+# Term 1 Week 03/10/22 - 09/10/22
 
 ## 03/10
 
@@ -50,7 +50,7 @@ Complete research on hardware, sensors and communication of the F1Tenth car
 
 ## 25/10
 
-Continued research on hardware of the F1Tenth. Researched Chassis, NVIDIA Jetson NX, Lidar sensor.
+Continued research on hardware of the F1Tenth. Researched Chassis, NVIDIA Jetson NX, Lidar sensor. Found this to be important for the report due to these parts of the car being primary components that make it work.
 
 ## 29/10
 
@@ -119,3 +119,55 @@ Created simple turtlesim robot program to show automatic forward movement.
 ## 07/12
 
 Talked about proof of concept of message passing (publisher-subscriber), importance in ROS. Talked about turtlesim program. Completed recordings of proof of concept demo.
+
+# Term 2: Week 23/01/23 - 29/01/23
+
+## 23/01
+
+After Winter holidays and getting back into university work/life styles, I have picked back up on the project, starting off with setting up a meeting on 24/01 with supervisor.
+
+Main parts to talk about with supervisor:
+* Interim report grades
+* Feedback on code & report
+* Doubts about how to run code with the simulator
+* Potentially creating own launcher to show ROS working
+
+## 24/01
+
+After meeting with supervisor, marks have been received. This term's main focus is on creating code to show F1Tenth's capabilities. 
+
+Although receiving the green light on working to create a new launcher, I will give one final attempt on trying to run a program with the simulator.
+
+Began writing a program which will attempt to read the LidarScanner readings. These readings are read through a subscription to LidarScan topic, by using the range variable to output left, right and front readings of the robot.
+
+## 25/01
+
+Completed writing the lidar scan program, added 3 print statements in the subscriber function to read range[0, 360, 719] readings.
+
+Instead of trying to run the program by entering its details into the launcher file, mux, behaviour, etc., I have attempted to run the program by running the simulator, to create a ROS master_node connection. Once done, run the lidar scan program on a separate terminal using ```python <file name>``` command. This has successfully run the program, with it subscribing to the car's LidarScan and showing readings.
+
+Tested the success by dropping car in different locations to see Lidar readings change.
+
+Messaged supervisor to scrap the new launcher idea.
+
+## 28/01
+
+After discovering how to run programs with the simulator, the next step is to start creating an emergency brake program. This will cause the car to brake if it reaches too close to the wall.
+
+Following the F1/10 lab sheet, the goal is to subscribe to LidarScan and Odometry topics, while publishing to AckermannDriveStamped (Ackermann). Using LidarScan readings & Odometry's coordinates, we calculate the time to collision (TTC) with wall and publishing a brake to Ackermann topic.
+
+# Week 30/01/23 - 05/02/23
+
+## 30/01
+
+When attempting to calculate the TTC, the program seemed to be stuck in a loop, with the car also not moving at all. This could have been a result of topics overwriting data while trying to scan. 
+
+As a result, I have decided to subscribe only to LidarScan and publish to Ackermann, where the car will scan what is in front of itself, and if the scan goes past set threshold, program will publish to Ackermann to brake.
+
+I later have encountered multiple errors where when program is executed, an error occurs where reading topic's variables are not found.
+
+# 31/01
+
+After multiple attempts to debug the code, I decided to delete it and start from scratch. This has ended in success, where the problem was that when attempting to change topic values for speed, the variables were being declared in the wrong order.
+
+When run, the car will drive forward until reaching near the wall, where car will brake and output a message of "stop car" to confirm that the program does work.

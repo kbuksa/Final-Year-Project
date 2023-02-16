@@ -171,3 +171,27 @@ I later have encountered multiple errors where when program is executed, an erro
 After multiple attempts to debug the code, I decided to delete it and start from scratch. This has ended in success, where the problem was that when attempting to change topic values for speed, the variables were being declared in the wrong order.
 
 When run, the car will drive forward until reaching near the wall, where car will brake and output a message of "stop car" to confirm that the program does work.
+
+# Week 13/02/23 - 19/02/23
+
+## 13/02
+
+Begun writing code for a wall follower by using the F1Tenth lab sheets for inspiration. The plan is to implement it via use of PID control to calculate the error distance from the followed wall so car drives in parallel to wall at specific distance. 
+
+The work will be done by subscribing to LidarScan to get laser scan of car-to-wall distance. Also will be publishing to AckermannDriveStamped to change speed and steering angle of car from scan readings.
+
+## 15/02
+
+Majority of wall follower code is completed. Use of constants and initialised variables to store data necessary for calculations. Main ones being calculating current and previous time between readings, calculation of cars current and prediction of future location. 
+
+With this information, can calculate the distance from the wall and the car's steering angle, with specific conditions for each, changing the speed and steering of the car when needed.
+
+The main issue met today is that ROS time is not working with the initialisation of the node. As a result, I will attempt to change the time from using the ROS library to the Time python library.
+
+## 16/02
+
+After changing the time from ROS time to Time library, there are no more errors appearing. However, when running the program, it does not seem to publish the change of speed to the car, which as a result causes the car to be forever stationary.
+
+Tomorrow will attempt to completely redo the wall follower program, without PID changes, instead using changing of states depending on what command should be done (eg: follow wall, find wall, etc.).
+
+Plan will be to show use of PID control in a separate program which I will think about in the later stage.

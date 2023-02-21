@@ -195,3 +195,13 @@ After changing the time from ROS time to Time library, there are no more errors 
 Tomorrow will attempt to completely redo the wall follower program, without PID changes, instead using changing of states depending on what command should be done (eg: follow wall, find wall, etc.).
 
 Plan will be to show use of PID control in a separate program which I will think about in the later stage.
+
+# Week 20/02/23 - 26/02/23
+
+## 20/02
+
+Today took a detour to create a quick and brief proof-of-concept to show how OOP can be used with ROS, by using a class to handle the program. The program itself shows a car that can drive forward automatically, with scanner message showing distance to object ahead. 
+
+This is achieved by subscribing to LidarScan to get the range ahead of car, and publishing the speed to AckermannDriveStamped.
+
+With this done, I will now focus on creating a new prototype for wall-follower, using states and OOP class method this week.

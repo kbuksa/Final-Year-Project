@@ -46,7 +46,7 @@ def scan_listen(scan_data):
 
 def follow_action():
     global scan_dict
-    threshold = 1 #Max acceptable distance to wall
+    threshold = 0.8 #Max acceptable distance to wall
 
     #Cases
     #Cases 0 - find wall
@@ -79,49 +79,49 @@ def follow_action():
     else:
         print("No known state")
         sys.exit()
+    
+    if current_state == 0:
+        find_wall()
+    elif current_state == 1:
+        turn_left()
+    elif current_state == 2:
+        follow_wall()
+        pass
+    else:
+        rospy.logerr('Unknown state!')
 
 def find_wall():
     print("find wall")
-    drive = AckermannDriveStamped()
-    turn = Twist()
-    drive.drive.speed = 0.5
-    turn.angular.z = -0.3
-    pub_drive.publish(drive)
-    pub_turn.publish(turn)
+    ack_drive = AckermannDriveStamped()
+    # turn = Twist()
+    ack_drive.drive.speed = 0.5
+    # turn.angular.z = -0.3
+    pub_drive.publish(ack_drive)
+    # pub_turn.publish(turn)
 
 
 def turn_left():
     print("turn left")
-    turn = Twist()
-    turn.angular.z = 0.3
-    pub_turn.publish(turn)
+    ack_drive = AckermannDriveStamped()
+    ack_drive.drive.speed = 0.3
+    ack_drive.drive.steering_angle = 0.5
+    pub_drive.publish(ack_drive)
 
 def follow_wall():
     print("following")
-    drive = AckermannDriveStamped()
-    drive.drive.speed = 0.5
-    pub_drive.publish(drive)
+    ack_drive = AckermannDriveStamped()
+    ack_drive.drive.speed = 0.5
+    pub_drive.publish(ack_drive)
 
 if __name__ == '__main__':
-    print("program begin")
-    rospy.init_node("wall_follow_state")
-    sub = rospy.Subscriber('/scan', LaserScan, scan_listen)
-    pub_drive = rospy.Publisher('/drive', AckermannDriveStamped, queue_size=1)
-    pub_turn = rospy.Publisher('/odom', Odometry, queue_size=1)
-    rate = rospy.Rate(20)
-
-    while not rospy.is_shutdown():
-        drive = AckermannDriveStamped()
-        turn = Twist()
-        if current_state == 0:
-            find_wall()
-        elif current_state == 1:
-            turn_left()
-        elif current_state == 2:
-            follow_wall()
-            pass
-        else:
-            rospy.logerr('Unknown state!')
-        pub_drive.publish(drive)
-        rate.sleep()
-
+    try:
+        print("program begin")
+        rospy.init_node("wall_follow_state")
+        sub = rospy.Subscriber('/scan', LaserScan, scan_listen)
+        pub_drive = rospy.Publisher('/drive', AckermannDriveStamped, queue_size=1)
+        # pub_turn = rospy.Publisher('/odom', Odometry, queue_size=1)
+        rate = rospy.Rate(20)
+        ack_drive = AckermannDriveStamped()
+        rospy.spin()
+    except rospy.ROSInterruptException:
+        pass

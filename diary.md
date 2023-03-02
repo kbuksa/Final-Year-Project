@@ -205,3 +205,74 @@ Today took a detour to create a quick and brief proof-of-concept to show how OOP
 This is achieved by subscribing to LidarScan to get the range ahead of car, and publishing the speed to AckermannDriveStamped.
 
 With this done, I will now focus on creating a new prototype for wall-follower, using states and OOP class method this week.
+
+## 26/02
+
+I have now began creating the new prototype to show how a wall-following algorithm would work with the F1Tenth car. This program uses states to cycle between, which are stored in a dictionary. The states are:
+
+* 0 : Find a wall
+* 1 : Turn left if wall found
+* 2 : Follow wall
+
+The reason why I decided for this approach is that it requires much less calculations, while just performing actions based on the distance of the car to walls. This also would allow the program to be easier to understand as it runs.
+
+Both prototypes subscribe to LidarScan and publish to AckermannDriveStamped. 
+
+LidarScan uses a dictionary variable that holds the scans for the left, front and right of the car, at 60 degree ranges and will store the lowest value in each of the ranges (distance closest to wall for each direction).
+
+* Right [121:280]
+* Front [281:440]
+* Left [441:600]
+
+I have then stated different cases for the car using series of if...then...else statements for each of the measurements. For example:
+
+* If car's reading for left, front and right values are > threshold, change state to 0 (find wall)
+* If readings for the front of car are < threshold while readings for left & right > threshold, change state to 1 (turn left)
+* If readings for right of car < threshold and while readings for front & left > threshold, change state to 2 (follow wall)
+
+These cases take into account all scenarios the car may be in, and will switch to appropriate case. 
+
+Once a state is declared, this will then run the appropriate code for that state
+
+* 0 will drive car forward, looking for wall
+* 1 will turn the car slowly to the left
+* 2 once car is perpendicular to right wall, it stops turning and drives forwards (follows wall)
+
+Currently, the car is not able to publish the Ackermann values, but when the car is moved around the map, depending on how close/far to the wall it is, the states are shown to change through terminal output.
+
+# Week 27/02/23 - 05/03/23
+
+## 28/02
+
+I have found the solution to my problem with no publishing of Ackermann values. This was resolved when I moved the code that calls on functions for state actions from the main function into the action decider function with all cases.
+
+I have also reduced the threshold for scan range from 1 to 0.8
+
+Currently, the car is able to drive to find a wall and turn left if wall is found. However, the car tends to always overturn therefore never going into the follow wall state. It seems that the condition is never entered into.
+
+# 02/03
+
+After constant trial and error with the scan ranges, I have discovered that I have been using LaserScan ranges wrong, with multiple sources using different scan ranges. For the F1Tenth, it does a full 360 degrees scan, starting at the rear and going anti-clockwise. I discovered that:
+
+* scan.ranges[0] = 0 degrees from bottom (rear)
+* scan.ranges[270] = 90 degrees (right)
+* scan.ranges[540] = 180 degrees (front)
+* scan.ranges[810] = 270 degrees (left)
+* scan.ranges[1019] = 360 degrees (rear)
+
+With this discovery, I have now changed the range scan dictionary for left, front and right values:
+
+* right: scan_data.ranges[225:434]
+* front: scan_data.ranges[435:644]
+* left: scan_data.ranges[645:854]
+
+This now causes each area to have a scan range of 70 degrees per region.
+
+I have also adjusted the speed and steering angle to make the program much easier to notice changes, however I may change the speed to be faster when making demo video.
+
+
+On top of this, with the discovery of LaserScan ranges, I have now returned to my previous programs of lidar_scan and emergency_brake and changed the ranges values to the appropriate ones. 
+
+As a result, emergency brake now works correctly and can be visible to stop before touching the wall.
+
+The next plan is to create another prototype for wall follower, which will include a new state that allows the car to follow the left wall, which will as a result keep the car driving within the track at all times without relying on a single wall.

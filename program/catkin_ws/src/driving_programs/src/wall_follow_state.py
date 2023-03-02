@@ -36,12 +36,24 @@ def state_change(state):
 
 #Stores scan data in scan dictionary
 def scan_listen(scan_data):
+    # print("range length", len(scan_data.ranges))
+    # print("range 000 (rear?)", scan_data.ranges[0])
+    # print("range 090", scan_data.ranges[90])
+    # print("range 180", scan_data.ranges[180])
+    # print("range 270", scan_data.ranges[270])
+    # print("range 360", scan_data.ranges[360])
+    # print("range 450", scan_data.ranges[450])
+    # print("range 540 (front?)", scan_data.ranges[540])
+    # print("range 630", scan_data.ranges[630])
+    # print("range 720", scan_data.ranges[720])
     global scan_dict
-    # print("scanning")
+
+    #LidarScan works in 360 view starting from rear of car and going anti-clockwise
     scan_dict = {
-        "right": min(scan_data.ranges[121:280]),
-        "front": min(scan_data.ranges[281:440]),
-        "left": min(scan_data.ranges[441:600]),}
+        "right": min(scan_data.ranges[225:434]),
+        "front": min(scan_data.ranges[435:644]),
+        "left": min(scan_data.ranges[645:854]),}
+    # print(scan_dict)
     follow_action()
 
 def follow_action():
@@ -73,7 +85,7 @@ def follow_action():
         #close to front, left and right walls
         state_change(1)
     #Cases 2 - follow wall
-    elif scan_dict['front'] > threshold and scan_dict['fleft'] > threshold and scan_dict['fright'] < threshold:
+    elif scan_dict['front'] > threshold and scan_dict['left'] > threshold and scan_dict['right'] < threshold:
         #close to right wall
         state_change(2)
     else:
@@ -91,26 +103,24 @@ def follow_action():
         rospy.logerr('Unknown state!')
 
 def find_wall():
-    print("find wall")
+    # print("find wall")
     ack_drive = AckermannDriveStamped()
-    # turn = Twist()
     ack_drive.drive.speed = 0.5
-    # turn.angular.z = -0.3
     pub_drive.publish(ack_drive)
-    # pub_turn.publish(turn)
 
 
 def turn_left():
-    print("turn left")
+    # print("turn left")
     ack_drive = AckermannDriveStamped()
-    ack_drive.drive.speed = 0.3
-    ack_drive.drive.steering_angle = 0.5
+    ack_drive.drive.speed = 0.2
+    ack_drive.drive.steering_angle = 0.6
     pub_drive.publish(ack_drive)
 
 def follow_wall():
-    print("following")
+    # print("following")
     ack_drive = AckermannDriveStamped()
-    ack_drive.drive.speed = 0.5
+    ack_drive.drive.steering_angle = 0
+    ack_drive.drive.speed = 0.3
     pub_drive.publish(ack_drive)
 
 if __name__ == '__main__':
@@ -119,7 +129,6 @@ if __name__ == '__main__':
         rospy.init_node("wall_follow_state")
         sub = rospy.Subscriber('/scan', LaserScan, scan_listen)
         pub_drive = rospy.Publisher('/drive', AckermannDriveStamped, queue_size=1)
-        # pub_turn = rospy.Publisher('/odom', Odometry, queue_size=1)
         rate = rospy.Rate(20)
         ack_drive = AckermannDriveStamped()
         rospy.spin()

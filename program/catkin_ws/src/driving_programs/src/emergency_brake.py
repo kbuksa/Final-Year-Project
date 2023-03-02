@@ -5,9 +5,9 @@ from ackermann_msgs.msg import AckermannDriveStamped
 
 def scan_listener(scan_data):
     # print("distance to object: ", scan_data.ranges[360])
-    if scan_data.ranges[360] < 0.8: #condition on how close wall is
+    if scan_data.ranges[540] < 0.8: #condition on how close wall is
         ack_data.drive.speed = 0 #stops car if true
-        print("Stop car")
+        # print("Stop car")
     else:
         ack_data.drive.speed = 2 #keeps speed of car at 2m/s
     pub_drive.publish(ack_data) #publishes results

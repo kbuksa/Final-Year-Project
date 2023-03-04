@@ -276,3 +276,19 @@ On top of this, with the discovery of LaserScan ranges, I have now returned to m
 As a result, emergency brake now works correctly and can be visible to stop before touching the wall.
 
 The next plan is to create another prototype for wall follower, which will include a new state that allows the car to follow the left wall, which will as a result keep the car driving within the track at all times without relying on a single wall.
+
+# 04/03
+
+Created program for the car to avoid obstacles using similar logic to the wall follower program. I have used a case system (if statements) to take apprioriate action. However instead of using states, I made the appropriate function to be called within the case. By using measurements:
+
+* right: scan_data.ranges[225:434]
+* front: scan_data.ranges[435:644]
+* left: scan_data.ranges[645:854]
+
+I was able to create cases where the car will turn left, right or drive forwards depending on what is in front of the car.
+
+When case to drive forward, Ackermann's speed is updated only. When case to turn left, Ackermann's speed is reduced and steering angle is set to 1 to turn left. When case to turn right, Ackermann's speed is also reduced and steering angle is set to -1 to turn right. 
+
+As a result, the car is now able to complete a track without touching any walls, turning in time to not crash into a wall, while also centering itself to be in the middle of the track for safety. When adding obstacle points into the track, the car will take appropriate evasive action to avoid the obstacle depending on what the scan read shows. Afterwards it will then re-centre on the track again.
+
+The car

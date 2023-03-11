@@ -250,7 +250,7 @@ I have also reduced the threshold for scan range from 1 to 0.8
 
 Currently, the car is able to drive to find a wall and turn left if wall is found. However, the car tends to always overturn therefore never going into the follow wall state. It seems that the condition is never entered into.
 
-# 02/03
+## 02/03
 
 After constant trial and error with the scan ranges, I have discovered that I have been using LaserScan ranges wrong, with multiple sources using different scan ranges. For the F1Tenth, it does a full 360 degrees scan, starting at the rear and going anti-clockwise. I discovered that:
 
@@ -277,7 +277,7 @@ As a result, emergency brake now works correctly and can be visible to stop befo
 
 The next plan is to create another prototype for wall follower, which will include a new state that allows the car to follow the left wall, which will as a result keep the car driving within the track at all times without relying on a single wall.
 
-# 04/03
+## 04/03
 
 Created program for the car to avoid obstacles using similar logic to the wall follower program. I have used a case system (if statements) to take apprioriate action. However instead of using states, I made the appropriate function to be called within the case. By using measurements:
 
@@ -291,4 +291,20 @@ When case to drive forward, Ackermann's speed is updated only. When case to turn
 
 As a result, the car is now able to complete a track without touching any walls, turning in time to not crash into a wall, while also centering itself to be in the middle of the track for safety. When adding obstacle points into the track, the car will take appropriate evasive action to avoid the obstacle depending on what the scan read shows. Afterwards it will then re-centre on the track again.
 
-The car
+#Week 06/03/23 - 12/03/23
+
+## 06/03
+
+I have now converted my primary files to be classes which will allow me to re-use my code for different instances. I have decided to do this as a result of wanting to follow Software Engineering standards, to make my code of higher quality. 
+
+My plan now is to use my wall follower code within the Bug-0 Algorithm program that I will create for path planning. This will be used whenever the car interacts with an obstacle on its way to the goal destination.
+
+## 11/03
+
+With the programs now being stored inside classes, I have decided to write unit tests for my code to show that when put in certain scenarios, the code should execute in the way that I want it to.
+
+To start off with the test write ups, I have created a separate file to test the emergency_brake file, where I have created a test case for the car using brakes and the car driving when too far from an obstacle.
+
+With these tests, I then connect it with the emergency_brake program by inputting certain values into the scan_listener method that takes the simulated ranges and run the code.
+
+By using rostest and unittest imports, I was able to write assertions and then run the test in a ROS testing environment.

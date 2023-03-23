@@ -97,7 +97,7 @@ if __name__ == '__main__':
     try:
         print("program begin")
         rospy.init_node("obstacle_avoid")
-        Obstacle_avoidance()
+        obs_avoid = Obstacle_avoidance()
         rospy.spin()
     except rospy.ROSInterruptException:
         pass

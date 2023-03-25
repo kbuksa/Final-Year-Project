@@ -17,7 +17,7 @@ scan_dict = {
 
 class Wall_follow_test(unittest.TestCase): #class for unit tests
 
-    def setUp(self): #set up test environment from Emergency_brake class
+    def setUp(self): #set up test environment from Wall follow class
         self.wall_follow = wall_follow_state.Wall_follow()
 
     def tearDown(self):

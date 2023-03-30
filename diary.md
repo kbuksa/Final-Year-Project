@@ -308,3 +308,36 @@ To start off with the test write ups, I have created a separate file to test the
 With these tests, I then connect it with the emergency_brake program by inputting certain values into the scan_listener method that takes the simulated ranges and run the code.
 
 By using rostest and unittest imports, I was able to write assertions and then run the test in a ROS testing environment.
+
+# Week 20/03/23- 26/03/23
+
+## 23/03
+
+I have now continued to make more unit tests for my programs. This time I have tested the Wall_follower.py program.
+
+The tests I have made would mainly check that the 3 states are able to be accessed correctly, one test per state. 
+
+Later, I have decided to test the 8 unique conditions separately to see that all 8 states can be accessed and do their appropriate actions.
+
+To test these actions, I had to create a variable that would identify each of the conditions uniquely, printing out a specific number for each condition that would be checked in the tests.
+
+## 25/03
+
+I have now made a test file for Obstacle_avoid.py. 
+
+I have made tests that check each of the actions (forward, left and right) are entered.
+
+To do that, since there are specific scanner readings that affect the conditions to enter their required functions, I needed to simulate specific scan results that would trigger those specific conditions.
+
+Such as, to enter left turn when scan for front is too small:
+
+    scan_data.ranges = [1.2] * 580 + [0.4] + [1.3] * 500  
+    
+This puts data on the left and right of car to be above threshold while the data for front of car would be below the threshold, triggering the condition.
+
+This was repeated for all the tests.
+
+I have decided to test the 8 unique conditions separately to see that all 8 states can be accessed and do their appropriate actions.
+
+To test these actions, I had to create a variable that would identify each of the conditions uniquely, printing out a specific number for each condition that would be checked in the tests.
+

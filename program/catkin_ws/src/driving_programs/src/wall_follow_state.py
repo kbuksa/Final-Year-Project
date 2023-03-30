@@ -21,7 +21,9 @@ class Wall_follow:
         self.pub_drive = rospy.Publisher('/drive', AckermannDriveStamped, queue_size=1)
         self.rate = rospy.Rate(20)
         #Dictionary that stores the 3 states of the program
-        self.current_state = 0
+        self.switch_case = -1 #initialise check with what case was taken up in if-then-elif statements
+        self.current_state = 0 #start state at find wall
+        self.threshold = 0.8 #Max acceptable distance to wall
         self.state_dict = {
             0: 'find the wall',
             1: 'turn left',
@@ -59,35 +61,42 @@ class Wall_follow:
 
     def follow_action(self):
         global scan_dict
-        threshold = 0.8 #Max acceptable distance to wall
 
         #Cases
         #Cases 0 - find wall
-        if scan_dict['front'] > threshold and scan_dict['left'] > threshold and scan_dict['right'] > threshold:
+        if scan_dict['front'] > self.threshold and scan_dict['left'] > self.threshold and scan_dict['right'] > self.threshold:
             #close to no wall
+            self.switch_case = 1
             self.state_change(0)
-        elif scan_dict['front'] > threshold and scan_dict['left'] < threshold and scan_dict['right'] > threshold:
+        elif scan_dict['front'] > self.threshold and scan_dict['left'] < self.threshold and scan_dict['right'] > self.threshold:
             #close to left wall
+            self.switch_case = 2
             self.state_change(0)
-        elif scan_dict['front'] > threshold and scan_dict['left'] < threshold and scan_dict['right'] < threshold:
+        elif scan_dict['front'] > self.threshold and scan_dict['left'] < self.threshold and scan_dict['right'] < self.threshold:
             #close to left and right walls
+            self.switch_case = 3
             self.state_change(0)
         #Cases 1 - turn left 
-        elif scan_dict['front'] < threshold and scan_dict['left'] > threshold and scan_dict['right'] > threshold:
+        elif scan_dict['front'] < self.threshold and scan_dict['left'] > self.threshold and scan_dict['right'] > self.threshold:
             #close to wall in front
+            self.switch_case = 4
             self.state_change(1)
-        elif scan_dict['front'] < threshold and scan_dict['left'] > threshold and scan_dict['right'] < threshold:
+        elif scan_dict['front'] < self.threshold and scan_dict['left'] > self.threshold and scan_dict['right'] < self.threshold:
             #close to front and right walls
+            self.switch_case = 5
             self.state_change(1)
-        elif scan_dict['front'] < threshold and scan_dict['left'] < threshold and scan_dict['right'] > threshold:
+        elif scan_dict['front'] < self.threshold and scan_dict['left'] < self.threshold and scan_dict['right'] > self.threshold:
             #close to front and left walls
+            self.switch_case = 6
             self.state_change(1)
-        elif scan_dict['front'] < threshold and scan_dict['left'] < threshold and scan_dict['right'] < threshold:
+        elif scan_dict['front'] < self.threshold and scan_dict['left'] < self.threshold and scan_dict['right'] < self.threshold:
             #close to front, left and right walls
+            self.switch_case = 7
             self.state_change(1)
         #Cases 2 - follow wall
-        elif scan_dict['front'] > threshold and scan_dict['left'] > threshold and scan_dict['right'] < threshold:
+        elif scan_dict['front'] > self.threshold and scan_dict['left'] > self.threshold and scan_dict['right'] < self.threshold:
             #close to right wall
+            self.switch_case = 8
             self.state_change(2)
         else:
             print("No known state")
@@ -128,7 +137,7 @@ if __name__ == '__main__':
     try:
         print("program begin")
         rospy.init_node("wall_follow_state")
-        Wall_follow()
+        wall_follow = Wall_follow()
         rospy.spin()
     except rospy.ROSInterruptException:
         pass

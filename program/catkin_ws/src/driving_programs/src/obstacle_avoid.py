@@ -16,6 +16,8 @@ class Obstacle_avoidance:
     def __init__(self):
         sub = rospy.Subscriber('/scan', LaserScan, self.scan_listen)
         self.pub_drive = rospy.Publisher('/drive', AckermannDriveStamped, queue_size=1)
+        self.threshold = 0.75 #Max  distance acceptable to obstacle
+        self.drive_mode = 0
         self.rate = rospy.Rate(20)
 
     def scan_listen(self, scan_data):
@@ -30,21 +32,20 @@ class Obstacle_avoidance:
 
     def take_action(self):
         global scan_dict
-        threshold = 0.75 #Max  distance acceptable to obstacle
 
-        if scan_dict['front'] > threshold and scan_dict['left'] > threshold and scan_dict['right'] > threshold:
+        if scan_dict['front'] > self.threshold and scan_dict['left'] > self.threshold and scan_dict['right'] > self.threshold:
             #close to no wall
             self.forward()
 
-        elif scan_dict['front'] > threshold and scan_dict['left'] < threshold and scan_dict['right'] > threshold:
+        elif scan_dict['front'] > self.threshold and scan_dict['left'] < self.threshold and scan_dict['right'] > self.threshold:
             #close to left wall
             self.turn_right()
 
-        elif scan_dict['front'] > threshold and scan_dict['left'] < threshold and scan_dict['right'] < threshold:
+        elif scan_dict['front'] > self.threshold and scan_dict['left'] < self.threshold and scan_dict['right'] < self.threshold:
             #close to left and right walls
             self.forward()
 
-        elif scan_dict['front'] < threshold and scan_dict['left'] > threshold and scan_dict['right'] > threshold:
+        elif scan_dict['front'] < self.threshold and scan_dict['left'] > self.threshold and scan_dict['right'] > self.threshold:
             #close to wall in front
 
             if scan_dict['left'] <= scan_dict['right']: #checks whether to turn left or right
@@ -52,25 +53,25 @@ class Obstacle_avoidance:
             else:
                 self.turn_left() #priority to turn right if bigger gap on right
 
-        elif scan_dict['front'] < threshold and scan_dict['left'] > threshold and scan_dict['right'] < threshold:
+        elif scan_dict['front'] < self.threshold and scan_dict['left'] > self.threshold and scan_dict['right'] < self.threshold:
             #close to front and right walls
             self.turn_left()
 
-        elif scan_dict['front'] < threshold and scan_dict['left'] < threshold and scan_dict['right'] > threshold:
+        elif scan_dict['front'] < self.threshold and scan_dict['left'] < self.threshold and scan_dict['right'] > self.threshold:
             #close to front and left walls
             self.turn_right()
 
-        elif scan_dict['front'] < threshold and scan_dict['left'] < threshold and scan_dict['right'] < threshold:
+        elif scan_dict['front'] < self.threshold and scan_dict['left'] < self.threshold and scan_dict['right'] < self.threshold:
             #close to front, left and right walls
-            self.turn_left()
-
-        elif scan_dict['front'] > threshold and scan_dict['left'] > threshold and scan_dict['right'] < threshold:
-            #close to right wall
 
             if scan_dict['left'] <= scan_dict['right']: #checks whether to turn left or right
                 self.turn_right() #priority to turn right if bigger gap on right
             else:
                 self.turn_left() #priority to turn right if bigger gap on right
+
+        elif scan_dict['front'] > self.threshold and scan_dict['left'] > self.threshold and scan_dict['right'] < self.threshold:
+            #close to right wall
+            self.turn_left()
 
         else:
             print("No known state")
@@ -78,17 +79,20 @@ class Obstacle_avoidance:
 
     def forward(self):
         ack_drive = AckermannDriveStamped()
+        self.drive_mode = 1
         ack_drive.drive.speed = 1
         self.pub_drive.publish(ack_drive)
 
     def turn_left(self):
         ack_drive = AckermannDriveStamped()
+        self.drive_mode = 2
         ack_drive.drive.speed = 0.4
         ack_drive.drive.steering_angle = 1
         self.pub_drive.publish(ack_drive)
 
     def turn_right(self):
         ack_drive = AckermannDriveStamped()
+        self.drive_mode = 3
         ack_drive.drive.speed = 0.4
         ack_drive.drive.steering_angle = -1
         self.pub_drive.publish(ack_drive)
@@ -97,7 +101,7 @@ if __name__ == '__main__':
     try:
         print("program begin")
         rospy.init_node("obstacle_avoid")
-        Obstacle_avoidance()
+        obs_avoid = Obstacle_avoidance()
         rospy.spin()
     except rospy.ROSInterruptException:
         pass

@@ -39,16 +39,7 @@ class Wall_follow:
 
     #Stores scan data in scan dictionary
     def scan_listen(self, scan_data):
-        # print("range length", len(scan_data.ranges))
-        # print("range 000 (rear?)", scan_data.ranges[0])
-        # print("range 090", scan_data.ranges[90])
-        # print("range 180", scan_data.ranges[180])
-        # print("range 270", scan_data.ranges[270])
-        # print("range 360", scan_data.ranges[360])
-        # print("range 450", scan_data.ranges[450])
-        # print("range 540 (front?)", scan_data.ranges[540])
-        # print("range 630", scan_data.ranges[630])
-        # print("range 720", scan_data.ranges[720])
+
         global scan_dict
 
         #LidarScan works in 360 view starting from rear of car and going anti-clockwise

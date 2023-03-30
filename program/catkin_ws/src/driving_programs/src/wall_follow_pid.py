@@ -68,16 +68,16 @@ class Wall_follower:
         self.prev_t = moment_now #sets current time as previous time for future calc
         self.prev_error = self.error_t #sets current error as previous error for future calc
         print("check")
-        if abs(ack_data.drive.steering_angle) > 20.0 / 180.0 * PI:
+        if abs(self.ack_data.drive.steering_angle) > 20.0 / 180.0 * PI:
             print("speed: 0.5")
-            ack_data.drive.speed = 0.5
-        elif abs(ack_data.drive.steering_angle) > 10.0 / 180.0 * PI:
+            self.ack_data.drive.speed = 0.5
+        elif abs(self.ack_data.drive.steering_angle) > 10.0 / 180.0 * PI:
             print("speed: 1.0")
-            ack_data.drive.speed = 1.0
+            self.ack_data.drive.speed = 1.0
         else:
             print("speed: 1.5")
-            ack_data.drive.speed = 1.5
-        self.pub_drive.publish(ack_data)
+            self.ack_data.drive.speed = 1.5
+        self.pub_drive.publish(self.ack_data)
 
 if __name__ == '__main__':
     rospy.init_node("wall_follower")

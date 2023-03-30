@@ -12,7 +12,7 @@ class Auto_drive_test:
         rate = rospy.Rate(500)
 
     def scan_listener(self, scan_data):
-        print("distance to wall: ", scan_data.ranges[360])
+        print("distance to wall: ", scan_data.ranges[540])
         ack_data = AckermannDriveStamped()
         ack_data.drive.speed = 2 #keeps speed of car at 2m/s
         self.pub_drive.publish(ack_data)

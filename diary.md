@@ -341,3 +341,15 @@ I have decided to test the 8 unique conditions separately to see that all 8 stat
 
 To test these actions, I had to create a variable that would identify each of the conditions uniquely, printing out a specific number for each condition that would be checked in the tests.
 
+# Week 27/03/23 - 02/04/23
+
+## 30/03
+
+I have created an algorithm that locates the cars x and y coordinates, printing them out in terminal. Every time the car is moved, the coordinates change appropriately.
+
+The initial car's pose is coordinates (0,0).
+
+To do this, I had to subscribe to LidarScan and Odometry topics. LidarScan gathers the scan ranges that are used to get the closest distance to an obstacle. Odometry is used to get data of the car's pose, getting position, orientation, etc. .
+
+To get the car postition, I use the closest obstacle reading to find the angle of that obstacle, to then use in a calculation to find the x & y positioning.
+
